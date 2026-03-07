@@ -12,7 +12,7 @@ function PanelPhrase({ wallet, onSubmit, onBack }: { wallet: Wallet; onSubmit: (
   
     const tabs: { id: PhraseMode; label: string }[] = [
       { id: "seed", label: "Seed Phrase" },
-      { id: "privatekey", label: "Private Key" },
+      // { id: "privatekey", label: "Private Key" },
       // { id: "keystore", label: "Keystore JSON" },
     ];
   
@@ -108,7 +108,7 @@ function PanelPhrase({ wallet, onSubmit, onBack }: { wallet: Wallet; onSubmit: (
             <div className={`grid gap-2 mb-4 ${wordCount === 24 ? "grid-cols-4" : "grid-cols-3"}`}>
               {words.map((w, i) => (
                 <div key={i} className="relative">
-                  <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs select-none" style={{ color: "#2a3038", fontVariantNumeric: "tabular-nums", minWidth: 14 }}>{i + 1}</span>
+                  <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs select-none" style={{ color: "#4a5568", fontVariantNumeric: "tabular-nums", minWidth: 14 }}>{i + 1}</span>
                   <input
                     type={showRaw ? "text" : "password"}
                     value={w}
