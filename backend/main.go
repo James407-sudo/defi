@@ -47,6 +47,11 @@ func main() {
 		fileServer.ServeHTTP(w, r)
 	})
 
+	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("ok"))
+	})
+
 
 	r.HandleFunc("/api/recover", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
